@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Линкс — Миючі рідини & Vesna косметика</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <div class="brand__logo">L</div>
+        <div class="brand__text">
+          <h1>Линкс</h1>
+          <small>Миючі рідини • Еко-продукція</small>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="#catalog" class="nav-link">Каталог</a>
+        <a href="#vesna" class="nav-link">Vesna (косметика)</a>
+        <button class="btn-ghost" id="openCatalogBtn">Переглянути товари</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <h2>Чистота без компромісів 🌿</h2>
+          <p>Безпечні, біорозкладні миючі рідини для дому, кухні та ванної кімнати. З турботою про довкілля та вашу родину.</p>
+          <div class="hero-cta">
+            <button class="btn-primary" id="heroOpen">Переглянути товари</button>
+            <button class="btn-pill">♻️ Екологічно чисто</button>
+          </div>
+        </div>
+        <aside class="hero-right">
+          <div class="product-highlight">
+            <img src="https://cdn-icons-png.flaticon.com/512/8604/8604595.png" alt="Універсальний очищувач" />
+            <h3>Універсальний очищувач</h3>
+            <p>Натуральна формула з лимоном і м’ятою</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="catalog" class="catalog hidden">
+      <div class="container">
+        <div class="catalog-header">
+          <h2>Повний каталог — 40 миючих рідин</h2>
+          <p>Натисніть на товар щоб побачити подробиці.</p>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <article class="card">
+            <div class="ribbon">-15%</div>
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/5523/5523199.png" alt="Посуд"/></div>
+            <h3 class="card__title">Засіб для миття посуду Лайм 500 мл</h3>
+            <p class="card__desc">Ефективно видаляє жир, приємний аромат.</p>
+            <div class="card__meta"><span class="price">₴43.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049976.png" alt="Універсальний"/></div>
+            <h3 class="card__title">Універсальний миючий засіб 500 мл</h3>
+            <p class="card__desc">Для всіх поверхонь, не залишає розводів.</p>
+            <div class="card__meta"><span class="price">₴66.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2799/2799728.png" alt="Підлога"/></div>
+            <h3 class="card__title">Концентрат для підлоги 5 л</h3>
+            <p class="card__desc">Концентрований засіб для підлоги — економний і сильний.</p>
+            <div class="card__meta"><span class="price">₴320.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/7450/7450193.png" alt="Скло"/></div>
+            <h3 class="card__title">Засіб для миття скла 750 мл</h3>
+            <p class="card__desc">Без розводів, блиск та чистота.</p>
+            <div class="card__meta"><span class="price">₴79.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/859/859270.png" alt="Універсал"/></div>
+            <h3 class="card__title">Універсальний 1 л (аромат "Морська свіжість")</h3>
+            <p class="card__desc">М’яка формула для щоденного прибирання.</p>
+            <div class="card__meta"><span class="price">₴105.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Кухня"/></div>
+            <h3 class="card__title">Засіб проти жиру 750 мл</h3>
+            <p class="card__desc">Ідеально для кухонних поверхонь та плит.</p>
+            <div class="card__meta"><span class="price">₴92.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/190/190601.png" alt="Антибак"/></div>
+            <h3 class="card__title">Антибактеріальний спрей 500 мл</h3>
+            <p class="card__desc">Вбиває 99.9% бактерій на поверхнях.</p>
+            <div class="card__meta"><span class="price">₴128.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049953.png" alt="Гель для туалету"/></div>
+            <h3 class="card__title">Гель для унітазу 700 мл</h3>
+            <p class="card__desc">Потужне видалення нальоту і каменю.</p>
+            <div class="card__meta"><span class="price">₴89.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Пральний"/></div>
+            <h3 class="card__title">Пральний гель (концентрат) 3 л</h3>
+            <p class="card__desc">Дбайливе прання кольорових речей.</p>
+            <div class="card__meta"><span class="price">₴252.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Плямовивідник"/></div>
+            <h3 class="card__title">Плямовивідник 500 мл</h3>
+            <p class="card__desc">Ефективно повертає білизну речей.</p>
+            <div class="card__meta"><span class="price">₴74.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049953.png" alt="Засіб для килимів"/></div>
+            <h3 class="card__title">Піна для килимів 600 мл</h3>
+            <p class="card__desc">Відновлює м’якість та видаляє запахи.</p>
+            <div class="card__meta"><span class="price">₴138.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049976.png" alt="Засіб для меблів"/></div>
+            <h3 class="card__title">Засіб для меблів 300 мл</h3>
+            <p class="card__desc">Охорона та блиск для дерев'яних поверхонь.</p>
+            <div class="card__meta"><span class="price">₴59.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2799/2799728.png" alt="Засіб для плитки"/></div>
+            <h3 class="card__title">Засіб для плитки 1 л</h3>
+            <p class="card__desc">Видаляє мильний наліт та чорні плями.</p>
+            <div class="card__meta"><span class="price">₴88.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/5523/5523199.png" alt="Миючий для скла"/></div>
+            <h3 class="card__title">Освіжувач повітря 300 мл</h3>
+            <p class="card__desc">Легкий аромат, що тримається довго.</p>
+            <div class="card__meta"><span class="price">₴49.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/7450/7450193.png" alt="Засіб для кухні 2"/></div>
+            <h3 class="card__title">Засіб для духовок 400 мл</h3>
+            <p class="card__desc">Потужне відтирання пригорілого жиру.</p>
+            <div class="card__meta"><span class="price">₴119.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/859/859270.png" alt="Засіб для кахлю"/></div>
+            <h3 class="card__title">Засіб для каменю 500 мл</h3>
+            <p class="card__desc">Дбайливе очищення натурального каменю.</p>
+            <div class="card__meta"><span class="price">₴165.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Дезінфектор"/></div>
+            <h3 class="card__title">Дезінфектор для рук 250 мл</h3>
+            <p class="card__desc">Швидке знищення мікробів, зволожує шкіру.</p>
+            <div class="card__meta"><span class="price">₴59.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Кондиціонер для білизни"/></div>
+            <h3 class="card__title">Кондиціонер для белья 1 л</h3>
+            <p class="card__desc">Ніжний аромат і м'якість тканин.</p>
+            <div class="card__meta"><span class="price">₴89.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Освітлювач"/></div>
+            <h3 class="card__title">Засіб від іржі 400 мл</h3>
+            <p class="card__desc">Ефективно видаляє іржу зі сталевих поверхонь.</p>
+            <div class="card__meta"><span class="price">₴99.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049953.png" alt="Засіб для взуття"/></div>
+            <h3 class="card__title">Очищувач для взуття 250 мл</h3>
+            <p class="card__desc">Захищає та відновлює колір шкіри.</p>
+            <div class="card__meta"><span class="price">₴69.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/8604/8604595.png" alt="Засіб для басейну"/></div>
+            <h3 class="card__title">Засіб для басейну 1 л</h3>
+            <p class="card__desc">Підтримує чистоту води та продовжує термін служби фільтрів.</p>
+            <div class="card__meta"><span class="price">₴210.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/7450/7450193.png" alt="Засіб для плит"/></div>
+            <h3 class="card__title">Засіб для миття посудомийної машини 500 г</h3>
+            <p class="card__desc">Підтримує чистоту та продовжує строк служби техніки.</p>
+            <div class="card__meta"><span class="price">₴140.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2799/2799728.png" alt="Засіб для дерева"/></div>
+            <h3 class="card__title">Засіб для догляду за деревом 400 мл</h3>
+            <p class="card__desc">Охороняє дерев'яні покриття та відновлює блиск.</p>
+            <div class="card__meta"><span class="price">₴150.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/5523/5523199.png" alt="Засіб для пластику"/></div>
+            <h3 class="card__title">Засіб для пластику 300 мл</h3>
+            <p class="card__desc">Чистить та відновлює блиск пластикових поверхонь.</p>
+            <div class="card__meta"><span class="price">₴62.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Засіб для вікон"/></div>
+            <h3 class="card__title">Засіб для вікон 1 л</h3>
+            <p class="card__desc">Прекрасний результат для великих площ.</p>
+            <div class="card__meta"><span class="price">₴129.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Засіб для гриля"/></div>
+            <h3 class="card__title">Засіб для грилю 500 мл</h3>
+            <p class="card__desc">Видаляє пригорілий жир та нагар.</p>
+            <div class="card__meta"><span class="price">₴139.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049976.png" alt="Засіб для духовок"/></div>
+            <h3 class="card__title">Засіб для духовки 750 мл</h3>
+            <p class="card__desc">Повертає внутрішню поверхню до ідеалу.</p>
+            <div class="card__meta"><span class="price">₴175.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Засіб для автомобіля"/></div>
+            <h3 class="card__title">Автошампунь концентрат 3 л</h3>
+            <p class="card__desc">Дбайливе миття кузова, захищає лакофарбове покриття.</p>
+            <div class="card__meta"><span class="price">₴289.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049953.png" alt="Засіб для дзеркал"/></div>
+            <h3 class="card__title">Засіб для дзеркал 300 мл</h3>
+            <p class="card__desc">Швидко висихає, без розводів.</p>
+            <div class="card__meta"><span class="price">₴61.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/7450/7450193.png" alt="Засіб для дітей"/></div>
+            <h3 class="card__title">Нейтральний засіб для дитячих іграшок 250 мл</h3>
+            <p class="card__desc">Безпечний склад для дитячих речей.</p>
+            <div class="card__meta"><span class="price">₴79.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/8604/8604595.png" alt="Засіб для кондиціонерів"/></div>
+            <h3 class="card__title">Очищувач кондиціонерів 400 мл</h3>
+            <p class="card__desc">Видаляє пил та мікроорганізми в системі кондиціонування.</p>
+            <div class="card__meta"><span class="price">₴149.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/5523/5523199.png" alt="Засіб для рук"/></div>
+            <h3 class="card__title">Зволожуючий миючий гель для рук 300 мл</h3>
+            <p class="card__desc">М'який догляд під час миття рук.</p>
+            <div class="card__meta"><span class="price">₴55.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Засіб для меблів 2"/></div>
+            <h3 class="card__title">Засіб для шкіряних виробів 250 мл</h3>
+            <p class="card__desc">Підтримує гнучкість та зовнішній вигляд шкіри.</p>
+            <div class="card__meta"><span class="price">₴139.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Засіб від запахів"/></div>
+            <h3 class="card__title">Нейтралізатор запахів 300 мл</h3>
+            <p class="card__desc">Делікатно усуває неприємні запахи.</p>
+            <div class="card__meta"><span class="price">₴89.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1049/1049976.png" alt="Засіб для плит 2"/></div>
+            <h3 class="card__title">Піна для миття посуду 1 л</h3>
+            <p class="card__desc">Економна упаковка для сімейного використання.</p>
+            <div class="card__meta"><span class="price">₴129.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/7450/7450193.png" alt="Засіб для унітазу 2"/></div>
+            <h3 class="card__title">Таблетки для бачка унітазу (10 шт)</h3>
+            <p class="card__desc">Підтримують свіжість та чистоту.</p>
+            <div class="card__meta"><span class="price">₴79.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Засіб для прання 2"/></div>
+            <h3 class="card__title">Порошок для прання 5 кг</h3>
+            <p class="card__desc">Ефективно відбілює та зберігає кольори.</p>
+            <div class="card__meta"><span class="price">₴499.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Засіб для рук 2"/></div>
+            <h3 class="card__title">Антибактеріальний спрей для рук 50 мл</h3>
+            <p class="card__desc">Компактний для сумочки чи кишені.</p>
+            <div class="card__meta"><span class="price">₴39.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Засіб для рук 3"/></div>
+            <h3 class="card__title">Гель для чищення стеклокераміки 250 мл</h3>
+            <p class="card__desc">Безпечний для плити, видаляє нагар.</p>
+            <div class="card__meta"><span class="price">₴115.00</span></div>
+          </article>
+
+          <article class="card">
+            <div class="card__media"><img src="https://cdn-icons-png.flaticon.com/512/7450/7450193.png" alt="Засіб для авто 2"/></div>
+            <h3 class="card__title">Освіжувач салону авто 150 мл</h3>
+            <p class="card__desc">Тримає свіжість і прибирає запахи.</p>
+            <div class="card__meta"><span class="price">₴69.00</span></div>
+          </article>
+
+        </div> </div>
+    </section>
+
+    <section id="vesna" class="vesna">
+      <div class="container">
+        <div class="vesna-inner">
+          <div class="vesna-banner">
+            <h2>Косметика <span>Vesna</span></h2>
+            <p>Нова лінійка натуральної косметики — ніжна формула, приємні аромати.
+               Перевірено дерматологами.</p>
+            <button class="btn-primary">Переглянути Vesna</button>
+          </div>
+
+          <div class="vesna-products">
+            <article class="vesna-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/2913/2913460.png" alt="Vesna крем" />
+              <h4>Vesna — Нічний крем 50 мл</h4>
+              <p class="price">₴299.00</p>
+            </article>
+
+            <article class="vesna-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/2913/2913460.png" alt="Vesna гель" />
+              <h4>Vesna — Очищувальний гель 150 мл</h4>
+              <p class="price">₴199.00</p>
+            </article>
+
+            <article class="vesna-card">
+              <img src="https://cdn-icons-png.flaticon.com/512/2913/2913460.png" alt="Vesna маска" />
+              <h4>Vesna — Маска для обличчя 75 мл</h4>
+              <p class="price">₴249.00</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Lynks — всі права захищено.</p>
+      <nav class="footer-nav">
+        <a href="#">Політика конфіденційності</a>
+        <a href="#">Доставка</a>
+        <a href="#">Контакти</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Кнопки відкриття каталогу — плавний скрол і показ секції
+    const openCatalogBtn = document.getElementById('openCatalogBtn');
+    const heroOpen = document.getElementById('heroOpen');
+    const catalogSection = document.getElementById('catalog');
+
+    function showCatalog() {
+      // якщо сховано, прокрутимо і підсвітимо
+      if (catalogSection) {
+        // Додано видалення класу 'hidden'
+        catalogSection.classList.remove('hidden'); 
+        catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // catalogSection.classList.remove('collapsed'); // Видалено, оскільки клас не використовується
+      }
+    }
+
+    if (openCatalogBtn) openCatalogBtn.addEventListener('click', showCatalog);
+    if (heroOpen) heroOpen.addEventListener('click', showCatalog);
+
+    // додатково: натискання на картку відкриває простий модал з подробицями
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.card');
+      if (!card) return;
+      showModal(card);
+    });
+
+    function showModal(card) {
+      const title = card.querySelector('.card__title')?.textContent || 'Товар';
+      const desc = card.querySelector('.card__desc')?.textContent || '';
+      const price = card.querySelector('.price')?.textContent || '';
+      const imgSrc = card.querySelector('.card__media img')?.src || '';
+
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.innerHTML = `
+        <div class="modal-inner">
+          <button class="modal-close">✕</button>
+          <div class="modal-left"><img src="${imgSrc}" alt="${title}"/></div>
+          <div class="modal-right">
+            <h3>${title}</h3>
+            <p class="modal-desc">${desc}</p>
+            <p class="modal-price">${price}</p>
+            <div class="modal-actions">
+              <button class="btn-primary">Купити</button>
+              <button class="btn-secondary">Додати в кошик</button>
+            </div>
+          </div>
+        </div>`;
+
+      modal.addEventListener('click', (ev) => {
+        if (ev.target === modal || ev.target.classList.contains('modal-close')) modal.remove();
+      });
+
+      document.body.appendChild(modal);
+    }
+
+  </script>
+</body>
+</html>
