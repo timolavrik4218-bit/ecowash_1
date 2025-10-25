@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ product.name }} | Линкс</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{{ url_for('index') }}">
+                <div class="brand__logo">L</div>
+                <div class="brand__text">
+                    <h1>Линкс</h1>
+                    <small>Професійні засоби • Vesna</small>
+                </div>
+            </a>
+            <nav class="nav">
+                <div class="dropdown">
+                    <a href="{{ url_for('catalog_page', category_key='laundry') }}" class="nav-link dropdown-toggle">Каталог</a>
+                    <div class="dropdown-menu">
+                        {% for key, cat_data in categories.items() %} 
+                            <a href="{{ url_for('catalog_page', category_key=key) }}" class="dropdown-item">{{ cat_data.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <a href="{{ url_for('index') }}" class="nav-link">← На головну</a>
+                
+                <button class="btn-primary cart-btn" id="openCartBtn">
+                    🛒 Кошик (<span id="cart-count">0</span>)
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-detail">
+            <div class="container product-detail-inner"
+                data-product-id="{{ product_id }}"
+                data-name="{{ product.name }}"
+                data-price="{{ '%.2f' | format(product.price) }}"
+                data-img="{{ url_for('static', filename=product.img) }}"
+                data-desc="{{ product.desc }}">
+
+                <div class="product-image-container">
+                    <img src="{{ url_for('static', filename=product.img) }}" alt="{{ product.name }}" class="product-image"/>
+                    {% if product.tag %} 
+                        <div class="ribbon ribbon-{{ product.tag | lower | replace(' ', '-') | replace('!', '') }}">{{ product.tag }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="product-info">
+                    <h1>{{ product.name }}</h1>
+                    <p class="product-category">Категорія: <a href="{{ url_for('catalog_page', category_key=product.category) }}">{{ categories[product.category].title }}</a></p>
+                    <div class="product-description">
+                        <h3>Детальний опис:</h3>
+                        <p>{{ product.desc }}</p>
+                    </div>
+
+                    <div class="price-block">
+                         {% if product.price_old %} 
+                            <span class="price-old large">₴{{ '%.2f' | format(product.price_old) }}</span>
+                         {% endif %}
+                        <span class="price large">₴{{ '%.2f' | format(product.price) }}</span>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="btn-primary add-to-cart-detail" data-id="{{ product_id }}">
+                            <span class="icon">🛒</span> Додати в кошик
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script>
+        // JS CART LOGIC (копія з index.html для автономності)
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCountElement = document.getElementById('cart-count');
+
+        function updateCartUI() {
+            cartCountElement.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function addToCart(product) {
+            if (!product || !product.id) return;
+            const existingItem = cart.find(item => item.id === product.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            saveCart();
+            updateCartUI();
+            showToast(`"${product.name.substring(0, 30)}..." додано до кошика.`);
+        }
+
+        function getProductData(element) {
+            const itemElement = element.closest('[data-product-id]'); 
+            if (!itemElement) return null;
+            const id = itemElement.dataset.productId;
+            const name = itemElement.dataset.name; 
+            const price = parseFloat(itemElement.dataset.price);
+            const img = itemElement.dataset.img;
+            const desc = itemElement.dataset.desc || 'Опис відсутній';
+            
+            if (!id || !name || isNaN(price) || !img) {
+                return null;
+            }
+            return { id, name, price: price, img, desc, quantity: 1 };
+        }
+        
+        function removeItem(id) {
+            cart = cart.filter(item => item.id != id);
+            saveCart();
+            updateCartUI();
+            document.querySelector('.cart-modal')?.remove();
+            showCartModal();
+        }
+        
+        function changeQuantity(id, delta) {
+            const item = cart.find(i => i.id == id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeItem(id);
+                    return;
+                }
+            }
+            saveCart();
+            updateCartUI();
+            document.querySelector('.cart-modal')?.remove();
+            showCartModal();
+        }
+
+        function showCartModal() {
+            if (document.querySelector('.modal')) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal cart-modal';
+            
+            let cartItemsHtml = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsHtml = '<p class="cart-empty-message">Кошик порожній 😢</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    const productId = parseInt(item.id, 10);
+                    cartItemsHtml += `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <h4><a href="/product/${productId}" class="cart-item-link">${item.name}</a></h4>
+                                <p>₴${item.price.toFixed(2)} x ${item.quantity}</p>
+                            </div>
+                            <div class="cart-item-actions">
+                                 <button class="btn-pill cart-quantity-minus" data-id="${item.id}">-</button>
+                                 <span class="cart-item-quantity">${item.quantity}</span>
+                                 <button class="btn-pill cart-quantity-plus" data-id="${item.id}">+</button>
+                            </div>
+                            <p class="cart-item-total">₴${itemTotal.toFixed(2)}</p>
+                            <button class="modal-close remove-item" data-id="${item.id}">✕</button>
+                        </div>
+                    `;
+                });
+                cartItemsHtml += `<div class="cart-total"><strong>Загальна сума:</strong> <span>₴${total.toFixed(2)}</span></div>`;
+            }
+            
+            modal.innerHTML = `
+              <div class="modal-inner">
+                <button class="modal-close">✕</button>
+                <h3 class="modal-title">Ваш кошик</h3>
+                <div class="cart-items-container">${cartItemsHtml}</div>
+                ${cart.length > 0 ? '<div class="modal-actions"><button class="btn-primary" onclick="alert(\'Тут має бути логіка оформлення замовлення!\');">Оформити замовлення</button></div>' : ''}
+              </div>`;
+            
+            document.body.appendChild(modal);
+            
+            modal.addEventListener('click', (ev) => {
+                if (ev.target.classList.contains('remove-item')) {
+                    removeItem(ev.target.dataset.id);
+                } else if (ev.target.classList.contains('cart-quantity-plus')) {
+                    changeQuantity(ev.target.dataset.id, 1);
+                } else if (ev.target.classList.contains('cart-quantity-minus')) {
+                    changeQuantity(ev.target.dataset.id, -1);
+                } else if (ev.target === modal || ev.target.classList.contains('modal-close') || ev.target.classList.contains('modal')) {
+                    modal.remove();
+                }
+            });
+        }
+        
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('hide');
+                toast.addEventListener('transitionend', () => toast.remove());
+            }, 3000);
+        }
+        // END JS CART LOGIC
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartUI(); 
+
+            // Натискання на кнопку "Кошик"
+            document.getElementById('openCartBtn')?.addEventListener('click', showCartModal);
+
+            // Обробка кнопки "Додати в кошик" на сторінці товару
+            document.querySelector('.add-to-cart-detail')?.addEventListener('click', (e) => {
+                const productDetailElement = document.querySelector('.product-detail-inner');
+                if (productDetailElement) {
+                    const product = getProductData(productDetailElement);
+                    if (product) {
+                        addToCart(product);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
